@@ -70,4 +70,7 @@ DATADIR = $$PREFIX/share
 
 target.path = $$BINDIR
 
-INSTALLS += target
+icon.files = others/lyrics.py
+icon.path = $$BINDIR
+
+INSTALLS += target icon
