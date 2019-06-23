@@ -11,6 +11,7 @@
 #include <QJsonObject>
 #include <QJsonValue>
 #include <QtNetwork>
+#include <QFileInfo>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainWindow) {
@@ -26,6 +27,9 @@ MainWindow::MainWindow(QWidget *parent)
   bool checked = ui->themeSwitch->isChecked();
   ui->search_button->setIcon(
       QIcon(checked ? ":/dark/search.png" : ":/light/search.png"));
+
+  //search buton height fix
+  ui->search_button->setMaximumHeight(ui->search_edit->maximumHeight());
 }
 
 MainWindow::~MainWindow() { delete ui; }
@@ -36,6 +40,9 @@ void MainWindow::on_search_edit_returnPressed() {
 
   process = new QProcess(nullptr);
   QString script_path = QApplication::applicationDirPath() + "/lyrics.py";
+  qWarning()<<script_path;
+
+  qWarning()<<QFileInfo(script_path).exists();
 
   QFile file(script_path);
   if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
