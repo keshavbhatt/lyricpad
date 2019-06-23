@@ -60,4 +60,5 @@ parts:
             - python
             - python3-bs4
             - python3-requests
+            - python3-lxml
     after: [desktop-qt5]
