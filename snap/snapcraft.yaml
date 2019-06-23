@@ -17,6 +17,7 @@ apps:
     command: desktop-launch lyricpad
     environment:
        QT_STYLE_OVERRIDE: "gtk"
+       PYTHONPATH: "$SNAP/usr/lib/python3/dist-packages/"
     plugs:
         - home
         - unity7
@@ -27,7 +28,6 @@ apps:
         - gsettings
         - hardware-observe
         - desktop-legacy
-
 plugs:
   gtk-3-themes:
     interface: content
@@ -57,11 +57,15 @@ parts:
             - libqt5x11extras5
             - libdb5.3
             - libglib2.0-bin
-            - python3
-            - python3-bs4
-            - python3-requests
-            - python3-lxml
     after: [desktop-qt5]
+  python:
+    plugin: python
+    python-version: python2
+    stage-packages:
+      - python-six
+      - python-bs4
+      - python-requests
+      - python-lxml
   cleanup:
     after: 
       - qt
