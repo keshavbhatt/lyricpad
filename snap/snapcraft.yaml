@@ -58,4 +58,6 @@ parts:
             - libdb5.3
             - libglib2.0-bin
             - python
+            - python3-bs4
+            - python3-requests
     after: [desktop-qt5]
