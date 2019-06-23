@@ -8,4 +8,4 @@ Keywords=Lyrics;Musicmatch
 Exec=lyricpad %F
 Categories=Utility;Audio;
 Terminal=false
-Name[en_US]=lyricpad
+Name[en_US]=Lyricpad
