@@ -57,7 +57,7 @@ parts:
             - libqt5x11extras5
             - libdb5.3
             - libglib2.0-bin
-            - python
+            - python3
             - python3-bs4
             - python3-requests
             - python3-lxml
@@ -69,4 +69,4 @@ parts:
     override-prime: |
       # Remove unneeded stage files to save space
       cd usr/share
-      rm -rf apport bash-completion bug doc doc-base icons lintian man pam-configs pkgconfig themes upstart zsh
+      rm -rf apport bash-completion bug doc doc-base icons lintian man pam-configs themes upstart zsh
