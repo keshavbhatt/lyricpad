@@ -17,7 +17,7 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainWindow) {
   ui->setupUi(this);
   // init
-  this->setWindowTitle(QApplication::applicationName());
+  setWindowTitle(QApplication::applicationName()+"- Alpha");
   ui->resultCount->hide();
   ui->noResult->hide();
   ui->progressBar->hide();
@@ -30,6 +30,8 @@ MainWindow::MainWindow(QWidget *parent)
 
   //search buton height fix
   ui->search_button->setMaximumHeight(ui->search_edit->maximumHeight());
+  ui->search_button->resize(ui->search_button->width(),ui->search_edit->height());
+
 }
 
 MainWindow::~MainWindow() { delete ui; }
