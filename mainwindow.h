@@ -36,7 +36,7 @@ private slots:
     void setStyle(QString fname);
 private:
     Ui::MainWindow *ui;
-    QProcess *process;
+    QProcess *process = nullptr;
     QList<QStringList> lastResultList;
     QStyle *dafaultStyle;
 };

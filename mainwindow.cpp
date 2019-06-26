@@ -35,9 +35,15 @@ MainWindow::MainWindow(QWidget *parent)
 MainWindow::~MainWindow() { delete ui; }
 
 void MainWindow::on_search_edit_returnPressed() {
+
+//   QList<QProcess*> _process_list;
+//   _process_list = this->findChildren<QProcess*>();
+//   qDebug()<<_process_list;
+
   if (ui->search_edit->text().trimmed().isEmpty())
     return;
 
+  if(process == nullptr)
   process = new QProcess(nullptr);
   QString script_path = QApplication::applicationDirPath() + "/lyrics.py";
   qWarning()<<script_path;
@@ -91,6 +97,9 @@ void MainWindow::processReadyRead() {
 
 void MainWindow::processFinished(int exitCode) {
   ui->progressBar->hide();
+  if(process != nullptr)
+  process->deleteLater();
+  process = nullptr;
   Q_UNUSED(exitCode);
 }
 
