@@ -57,7 +57,7 @@ parts:
      after: [desktop-qt5]
    python:
      plugin: python
-     python-version: python2
+     python-version: python3
      python-packages:
        - python-six
        - python-bs4
@@ -73,11 +73,3 @@ parts:
        - qtbase5-dev
        - dpkg-dev
        - libqt5webkit5-dev
-   cleanup:
-       after: [application]
-       plugin: nil
-       override-prime: |
-          # Remove unneeded stage files to save space
-          cd usr/share
-          rm -rf apport bash-completion bug doc doc-base icons lintian man pam-configs pkgconfig themes upstart zsh
-
