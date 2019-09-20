@@ -58,7 +58,7 @@ parts:
    python:
      plugin: python
      python-version: python2
-     stage-packages:
+     python-packages:
        - python-six
        - python-bs4
        - python-requests
