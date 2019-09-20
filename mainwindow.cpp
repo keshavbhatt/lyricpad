@@ -59,7 +59,7 @@ void MainWindow::on_search_edit_returnPressed() {
   connect(process, SIGNAL(readyRead()), this, SLOT(processReadyRead()));
   connect(process, SIGNAL(finished(int)), this, SLOT(processFinished(int)));
 
-  process->start("python", QStringList() << script_path
+  process->start("python3", QStringList() << script_path
                                          << ui->search_edit->text());
   ui->progressBar->show();
 }
