@@ -7,6 +7,7 @@ description: |
 grade: stable  
 confinement: strict
 icon: snap/gui/icon.png  
+base: core18
 
 architectures:
   - build-on: amd64
@@ -29,48 +30,54 @@ apps:
         - hardware-observe
         - desktop-legacy
 plugs:
+  gsettings:
   gtk-3-themes:
     interface: content
-    target: $SNAP/usr/share/themes
+    target: $SNAP/data-dir/themes
     default-provider: gtk-common-themes
   icon-themes:
     interface: content
-    target: $SNAP/usr/share/icons
+    target: $SNAP/data-dir/icons
     default-provider: gtk-common-themes
   sound-themes:
     interface: content
-    target: $SNAP/usr/share/sounds
+    target: $SNAP/data-dir/sounds
     default-provider: gtk-common-themes
+  qt551:
+    interface: content
+    target: $SNAP/qt551
+    default-provider: qt551
 
 parts:
-  qt:
-    plugin: qmake
-    qt-version: qt5
-    source-type: git
-    source: https://github.com/keshavbhatt/lyricpad.git
-    build-packages:
-            - build-essential
-            - qtbase5-dev
-    stage:
-          - -usr/share/pkgconfig
-    stage-packages:
-            - libqt5x11extras5
-            - libdb5.3
-            - libglib2.0-bin
-    after: [desktop-qt5]
-  python:
-    plugin: python
-    python-version: python2
-    stage-packages:
-      - python-six
-      - python-bs4
-      - python-requests
-      - python-lxml
-  cleanup:
-    after: 
-      - qt
-    plugin: nil
-    override-prime: |
-      # Remove unneeded stage files to save space
-      cd usr/share
-      rm -rf apport bash-completion bug doc doc-base icons lintian man pam-configs themes upstart zsh
+   application:
+     source-type: git
+     source: https://github.com/keshavbhatt/lyricpad.git
+     plugin: qmake
+     qt-version: qt5
+     after: [desktop-qt5]
+   python:
+     plugin: python
+     python-version: python2
+     stage-packages:
+       - python-six
+       - python-bs4
+       - python-requests
+       - python-lxml
+   snap-launcher:
+     plugin: dump
+     source: snap_launcher/
+   desktop-qt5:
+     plugin: nil
+     build-packages:
+       - build-essential
+       - qtbase5-dev
+       - dpkg-dev
+       - libqt5webkit5-dev
+   cleanup:
+       after: [application]
+       plugin: nil
+       override-prime: |
+          # Remove unneeded stage files to save space
+          cd usr/share
+          rm -rf apport bash-completion bug doc doc-base icons lintian man pam-configs pkgconfig themes upstart zsh
+
